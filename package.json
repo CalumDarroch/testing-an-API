@@ -9,6 +9,12 @@
   "author": "Calum Darroch",
   "license": "ISC",
   "dependencies": {
+    "chai": "^4.2.0",
     "mocha": "^6.2.2"
+  },
+  "devDependencies": {
+    "chai": "*",
+    "mocha": "*",
+    "supertest": "^4.0.2"
   }
 }
