@@ -15,4 +15,30 @@ describe('/posts/1/comments', function() {
         expect(response).to.be.an('Array');
       });
   });
+
+  it('Posts are returned using an insecure HTTP GET request', async () => {
+    await fetch('http://jsonplaceholder.typicode.com:80/posts/1/comments', {
+      method: 'GET'
+    })
+      .then((response) => {
+        return response.json()
+      })
+      .then((response) => {
+        // console.log(response);
+        expect(response).to.be.an('Array');
+      });
+  });
+
+  it('Posts are returned using a secure HTTPS GET request', async () => {
+    await fetch('https://jsonplaceholder.typicode.com:443/posts/1/comments', {
+      method: 'GET'
+    })
+      .then((response) => {
+        return response.json()
+      })
+      .then((response) => {
+        // console.log(response);
+        expect(response).to.be.an('Array');
+      });
+  });
 });

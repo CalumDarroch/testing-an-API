@@ -11,7 +11,7 @@ describe('/posts/1', function() {
         return response.json()
       })
       .then((response) => {
-        console.log(response);
+        // console.log(response);
         expect(response).to.be.an('Object');
       });
   });

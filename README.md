@@ -20,3 +20,6 @@ While platforms/tools such as Postman and SoapUI seem to be the popular method f
 ### posts/1 path
 - The posts will be returned via both the HTTP (port: 80) and HTTPS (port: 443) protocols. This is not secure.
 - A JSON object is returned featuring a user id, a post id, post title and body.
+
+### posts/1/comments path
+- Comments will be returned using HTTP and HTTPS. HTTP is not secure.
