@@ -17,9 +17,12 @@ While platforms/tools such as Postman and SoapUI seem to be the popular method f
 
 ## Findings
 
+### General
+- Both posts and comments will be returned via both the HTTP (port: 80) and HTTPS (port: 443) protocols. This is not secure.
+- The API appears to make no use of login tokens. Both posts and comments are publicly available.
+
 ### posts/1 path
-- The posts will be returned via both the HTTP (port: 80) and HTTPS (port: 443) protocols. This is not secure.
 - A JSON object is returned featuring a user id, a post id, post title and body.
 
 ### posts/1/comments path
-- Comments will be returned using HTTP and HTTPS. HTTP is not secure.
+- An array of JSON objects is returned for the comments. Each comment features a post id, a comment id, a name, an email address and a body.

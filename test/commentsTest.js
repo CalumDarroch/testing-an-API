@@ -11,8 +11,17 @@ describe('/posts/1/comments', function() {
         return response.json()
       })
       .then((response) => {
-        // console.log(response);
+        console.log(response);
         expect(response).to.be.an('Array');
+      });
+  });
+
+  it('The API response has status 200', async () => {
+    await fetch('https://jsonplaceholder.typicode.com/posts/1/comments', {
+      method: 'GET'
+    })
+      .then((response) => {
+        expect(response).to.have.status('200');
       });
   });
 
