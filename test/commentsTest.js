@@ -1,5 +1,9 @@
 const fetch = require('node-fetch');
 var assert = require('assert');
+var chai = require('chai')
+  , chaiHttp = require('chai-http');
+
+chai.use(chaiHttp);
 var expect = require('chai').expect;
 
 describe('/posts/1/comments', function() {
@@ -60,7 +64,7 @@ describe('/posts/1/comments', function() {
       });
   });
 
-  it('Individual comments are returned when given a specific query', async () => {
+  it('Individual comments are returned when given a specific id query', async () => {
     await fetch('https://jsonplaceholder.typicode.com:443/posts/1/comments?id=4', {
       method: 'GET'
     })
@@ -68,8 +72,47 @@ describe('/posts/1/comments', function() {
         return response.json()
       })
       .then((response) => {
-        console.log(response);
-        expect(response).to.be.an('Object');
+        // console.log(response);
+        expect(response).to.be.an('Array');
+      });
+  });
+
+  it('Comments are returned by post when given postId query', async () => {
+    await fetch('https://jsonplaceholder.typicode.com:443/posts/1/comments?postId=1', {
+      method: 'GET'
+    })
+      .then((response) => {
+        return response.json()
+      })
+      .then((response) => {
+        // console.log(response);
+        expect(response).to.be.lengthOf(5);
+      });
+  });
+
+  it('Returns no comments when given non-existent query', async () => {
+    await fetch('https://jsonplaceholder.typicode.com:443/posts/1/comments?name=jeremy', {
+      method: 'GET'
+    })
+      .then((response) => {
+        return response.json()
+      })
+      .then((response) => {
+        // console.log(response);
+        expect(response).to.be.lengthOf(0);
+      });
+  });
+
+  it('Returns posts by email', async () => {
+    await fetch('https://jsonplaceholder.typicode.com:443/posts/1/comments?email=Carmen_Keeling@caroline.name', {
+      method: 'GET'
+    })
+      .then((response) => {
+        return response.json()
+      })
+      .then((response) => {
+        // console.log(response);
+        expect(response[0]).to.deep.include({email: 'Carmen_Keeling@caroline.name'});
       });
   });
 });
