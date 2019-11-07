@@ -2,8 +2,8 @@
 
 The goal of this exercise is to test the functionality of the `posts` path of the [JSON Placeholder API](https://github.com/typicode/jsonplaceholder), particularly:
 
-GET /posts/1
-GET /posts/1/comments
+- GET /posts/1
+- GET /posts/1/comments
 
 The criteria for the tests were that they must be automated. Further criteria - such as particular techniques or frameworks to use, parameters under test or acceptance criteria etc. - were not supplied. The tests were undertaken under black box conditions.
 
