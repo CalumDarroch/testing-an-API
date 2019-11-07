@@ -8,10 +8,10 @@ describe('/posts/1/comments', function() {
       method: 'GET'
     })
       .then((response) => {
+        console.log(response.headers.get('Content-Type')); // This returns application/json; charset=utf-8
         return response.json()
       })
       .then((response) => {
-        console.log(response);
         expect(response).to.be.an('Array');
       });
   });
@@ -22,6 +22,15 @@ describe('/posts/1/comments', function() {
     })
       .then((response) => {
         expect(response).to.have.status('200');
+      });
+  });
+
+  it('The API responds with 404 if invalid query sent', async () => {
+    await fetch('https://jsonplaceholder.typicode.com/posts/1/comments?postId=20', {
+      method: 'GET'
+    })
+      .then((response) => {
+        expect(response).to.have.status('404');
       });
   });
 
@@ -48,6 +57,19 @@ describe('/posts/1/comments', function() {
       .then((response) => {
         // console.log(response);
         expect(response).to.be.an('Array');
+      });
+  });
+
+  it('Individual comments are returned when given a specific query', async () => {
+    await fetch('https://jsonplaceholder.typicode.com:443/posts/1/comments?id=4', {
+      method: 'GET'
+    })
+      .then((response) => {
+        return response.json()
+      })
+      .then((response) => {
+        console.log(response);
+        expect(response).to.be.an('Object');
       });
   });
 });

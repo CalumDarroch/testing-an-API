@@ -12,6 +12,7 @@ describe('/posts/1', function() {
       method: 'GET'
     })
       .then((response) => {
+        console.log(response.headers.get('Content-Type')); // This returns application/json; charset=utf-8
         return response.json()
       })
       .then((response) => {
@@ -26,6 +27,15 @@ describe('/posts/1', function() {
       })
         .then((response) => {
           expect(response).to.have.status('200');
+        });
+    });
+
+    it('The API responds with 404 if invalid query sent', async () => {
+      await fetch('https://jsonplaceholder.typicode.com/posts/1?userId=327', {
+        method: 'GET'
+      })
+        .then((response) => {
+          expect(response).to.have.status('404');
         });
     });
 

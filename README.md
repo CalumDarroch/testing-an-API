@@ -20,9 +20,12 @@ While platforms/tools such as Postman and SoapUI seem to be the popular method f
 ### General
 - Both posts and comments will be returned via both the HTTP (port: 80) and HTTPS (port: 443) protocols. This is not secure.
 - The API appears to make no use of login tokens. Both posts and comments are publicly available.
+- Neither the posts nor comments return a `404 Not Found` response when passed a non-existent query. Instead they return `200` and the JSON objects listed under the path.
 
 ### posts/1 path
 - A JSON object is returned featuring a user id, a post id, post title and body.
 
 ### posts/1/comments path
 - An array of JSON objects is returned for the comments. Each comment features a post id, a comment id, a name, an email address and a body.
+- Email addresses being listed publicly on comments is a potential security issue.
+- Comments can be returned individually using id queries. They are returned in an array regardless of number.
